@@ -9,7 +9,7 @@ import { format } from "date-fns";
 
 
 
-const fetchData = async (dateFromTo :{ from: Date; to: Date }) => {
+const fetchData = async (dateFromTo :{ from: Date; to: Date  }) => {
   const response = await fetch(`http://localhost:8000/getNewsByDate/${format(dateFromTo.from, "dd, MM, yyyy")}-${format(dateFromTo.to, "dd, MM, yyyy")}`);
   return response.json();
 };
@@ -21,15 +21,15 @@ interface DataItem {
   total: number;
 }
 
-export function Overview({ dateFromTo: { from, to } }: { dateFromTo: { from: Date; to: Date } }) {
+export function Overview({ dateFromTo: { from, to } }: { dateFromTo: { from: Date ; to: Date} }) {
 
-  const { data, isLoading, isError } = useQuery(['data', String(from), String(to)], () => fetchData({ from, to }));
+  const { data, isLoading, isError } = useQuery(['datachart', String(from), String(to)], () => fetchData({ from, to }));
 
   const formattedData: DataItem[] = [];
   for (let key in data ) {
     //if (jsonData.hasOwnProperty(key)) {
     const item: DataItem = { keyword: key, total: data[key] * 100 + 1000 };
-    formattedData.push(item);
+    formattedData.push(item); 
     //}
   }
 
