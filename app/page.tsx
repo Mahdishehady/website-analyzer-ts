@@ -24,8 +24,18 @@ import {
 import { Top1 } from "./charts/components/top1"
 import { CalendarDateRangePicker } from "./charts/components/date-range-picker"
 import { DateRange } from "react-day-picker";
-import { addDays, format } from "date-fns";
+import { addDays } from "date-fns";
+import { useRouter } from "next/navigation"
 
+
+// const handleExportCSV = () => {
+//   const csv = Papa.unparse(searchResult); // Convert searchResult to CSV format
+//   const blob = new Blob([csv], { type: 'text/csv' });
+//   const link = document.createElement('a');
+//   link.href = URL.createObjectURL(blob);
+//   link.download = 'search_results.csv';
+//   link.click();
+// };
 
 export const metadata: Metadata = {
   title: "Dashboard",
@@ -33,6 +43,22 @@ export const metadata: Metadata = {
 }
 
 export default function DashboardPage() {
+
+  const router = useRouter()
+  
+function goTo()
+{
+  router.push('/organisation')
+}
+   function logout(){
+    localStorage.removeItem("token");
+      localStorage.removeItem("expirationDate");
+      router.push('/login')
+
+   }
+
+
+
   const [valueinput, setvalue] = useState("")
   const [date, setDate] = React.useState<DateRange | { from: Date; to: Date }>({
 
@@ -49,7 +75,11 @@ export default function DashboardPage() {
         <div className="flex-1 space-y-4 p-8 pt-6">
           <div className="flex items-center justify-between space-y-2">
             <h2 className="text-3xl font-bold tracking-tight">Web Analyzer</h2>
-
+            <div className="flex items-center space-x-2">
+            <Button onClick={goTo}>Organisation</Button>
+            <Button onClick={logout}>Logout</Button>
+            </div>
+            
           </div>
           <Tabs defaultValue="overview" className="space-y-4">
             <TabsList>
@@ -57,12 +87,12 @@ export default function DashboardPage() {
               <TabsTrigger value="analytics" >
                 Analytics
               </TabsTrigger>
-              <TabsTrigger value="reports" disabled>
+              {/* <TabsTrigger value="reports" disabled>
                 Reports
               </TabsTrigger>
               <TabsTrigger value="notifications" disabled >
                 Notifications
-              </TabsTrigger>
+              </TabsTrigger> */}
             </TabsList>
 
             <TabsContent value='overview' className="space-y-4">
@@ -124,7 +154,7 @@ export default function DashboardPage() {
                       +180.1% from last month
                     </p>
                   </CardContent>
-                  
+
                 </Card>
                 <Card>
                   <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
@@ -234,3 +264,5 @@ export default function DashboardPage() {
     </>
   )
 }
+
+

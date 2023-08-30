@@ -10,6 +10,9 @@ import {
   TableRow,
 } from "@/components/ui/table";
 
+
+
+
 interface Item {
   postID: number;
   description: string;
@@ -29,23 +32,30 @@ interface SerchDisplayProps {
 
 export function SerchDisplay({ valueinput }: SerchDisplayProps): JSX.Element {
   const { data, isLoading, isError } = useQuery<Item[]>(
-    ["searchblock",valueinput],
+    ["searchblock", valueinput],
     () => fetchData(valueinput),
     {
       enabled: !!valueinput,
       refetchOnWindowFocus: false,
     }
   );
-
+function handleEdit()
+{
+return
+}
+function handleDelete()
+{
+return
+}
   const listItems = !isLoading
     ? data?.map((item, index: number) => (
-        <TableRow key={index}>
-          <TableCell className="font-medium">{index}</TableCell>
-          <TableCell>{item.postID}</TableCell>
-          <TableCell>{item.description}</TableCell>
-          <TableCell className="text-right">{item.wordCount}</TableCell>
-        </TableRow>
-      ))
+      <TableRow key={index}>
+        <TableCell className="font-medium">{index}</TableCell>
+        <TableCell>{item.postID}</TableCell>
+        <TableCell>{item.description}</TableCell>
+        <TableCell className="text-right">{item.wordCount}</TableCell>
+      </TableRow>
+    ))
     : [];
 
   if (isLoading) {
@@ -55,25 +65,31 @@ export function SerchDisplay({ valueinput }: SerchDisplayProps): JSX.Element {
   if (isError) {
     return <p>Error fetching data</p>;
   }
-  if(data){
-  return (
-    <>
-      <Table>
-        <TableCaption>A list of your Search.</TableCaption>
-        <TableHeader>
-          <TableRow>
-            <TableHead className="w-[100px]">Article</TableHead>
-            <TableHead>PostID</TableHead>
-            <TableHead>Description</TableHead>
-            <TableHead className="text-right">WordCount</TableHead>
-          </TableRow>
-        </TableHeader>
-        <TableBody>{listItems}</TableBody>
-      </Table>
+  if (data) {
+    return (
+      <>
+        <Table>
+          <TableCaption>A list of your Search.</TableCaption>
+          <TableHeader>
+            <TableRow>
+              <TableHead className="w-[100px]">Article</TableHead>
+              <TableHead>PostID</TableHead>
+              <TableHead>Description</TableHead>
+              <TableHead className="text-right" >WordCount</TableHead>
+
+              <TableCell>
+              <TableHead>
+          </TableHead>
+          </TableCell>
+            </TableRow>
+          </TableHeader>
+          <TableBody>{listItems}</TableBody>
+        </Table>
+      </>
+    );
+  }
+  else
+    return <>
     </>
-  );}
-else
-return <>
-</>
 
 }
