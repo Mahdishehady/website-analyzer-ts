@@ -3,6 +3,7 @@ import * as React from "react"
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 import axios from "axios"
+import Link from "next/link"
 
 export interface InputProps
   extends React.InputHTMLAttributes<HTMLInputElement> { }
@@ -32,33 +33,40 @@ export { Input }
 
 
 export function InputWithButton() {
+ 
 
-
-  const [bodyContent, setbodyContent] = React.useState('');
+  const [bodyContent, setbodyContent] = React.useState([]);
   const [inputValue, setInputValue] = React.useState('');
+  const [str, setstr] = React.useState<String>('');
+  
   const handleInputChange = (event) => {
     setInputValue(event.target.value);
+    setbodyContent([])
 
   };
 
   const handleSubmit = async (event) => {
+     setstr('Getting the sitemap Urls.......');
     event.preventDefault();
     const url = inputValue
-
+    
 
     axios
       .post("/api/addOrg", {
         url
       })
       .then((res) => {
+        setstr('')
         const sitemapData = res.data.siteMapData;
+        
+        
         setbodyContent(sitemapData)
-          
+
 
       })
       .catch((err) => {
-       
-        
+        setstr('Error occured! check console.')
+        setstr('')
         console.log(err);
 
 
@@ -79,8 +87,13 @@ export function InputWithButton() {
           </div>
 
         </div>
-        <div>
-          {bodyContent}
+        <div className="flex gap-1">
+          {str}
+          <ul className="flex gap-4 flex-col ">
+        {bodyContent.map((item, index) => (
+          <li key={index}>{index +1}.<Link href={item}>{item}</Link></li>
+        ))}
+      </ul>
         </div>
       </form>
     )

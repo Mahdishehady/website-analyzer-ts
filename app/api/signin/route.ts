@@ -12,7 +12,7 @@ export async function POST(req : Request)
     const body= await req.json()
     const {email,password}=body;
 
-    connectDB()
+    connectDB()c
     const isUserPresent = await User.findOne({email});
 if(isUserPresent)
 {
