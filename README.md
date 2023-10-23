@@ -38,6 +38,10 @@ Login page:
 OverView:
 ![image](https://github.com/Mahdishehady/website-analyzer-ts/assets/113033930/3c1b8290-5eac-471e-bb23-c82fbd7b83e4)
 
+Analytics:
+![image](https://github.com/Mahdishehady/website-analyzer-ts/assets/113033930/6d3f4fc5-52b4-4e6f-a13b-85c5389d3342)
+
+
 
 ## Deploy on Vercel
 
