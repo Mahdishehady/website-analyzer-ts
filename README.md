@@ -1,9 +1,9 @@
-#Website-analyzer-v2
+# Website-analyzer-v2
 
-#New frontEnd 
+# New frontEnd 
 A Next/React/Typescript project.
 
-#Description
+# Description
 Website-analyzer is a web application that leverages a custom RESTful API to fetch data from a Python backend. This project represents a significant evolution from a previous version where data was obtained by crawling websites and sitemap scraping, utilizing Python with libraries such as BeautifulSoup for data extraction and HTML, CSS, and JavaScript for data visualization.
 
 In the new version, Website-analyzer is rebuilt from the ground up using modern technologies. It employs React and Next.js to create a highly efficient user interface, while data retrieval is facilitated through RESTful APIs. The project also introduces robust user authentication mechanisms, allowing users to create accounts, log in, and access personalized content.
