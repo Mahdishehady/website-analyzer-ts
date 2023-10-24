@@ -36,7 +36,8 @@ Login page:
 
 
 OverView:
-![image](https://github.com/Mahdishehady/website-analyzer-ts/assets/113033930/6b4dc0d9-e24d-47b2-8fd9-c0299424446b)
+![image](https://github.com/Mahdishehady/website-analyzer-ts/assets/113033930/a74cf90d-6e5c-4b91-a4e1-154ce4ebe8f3)
+
 
 
 Analytics:
