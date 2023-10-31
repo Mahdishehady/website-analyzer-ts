@@ -32,69 +32,67 @@ export { Input }
 
 
 
-export function InputWithButton() {
- 
+export function WebsiteManage({setWebsites}) {
+
 
   const [bodyContent, setbodyContent] = React.useState([]);
   const [inputValue, setInputValue] = React.useState('');
   const [str, setstr] = React.useState<String>('');
-  
+
   const handleInputChange = (event) => {
     setInputValue(event.target.value);
     setbodyContent([])
+    setstr('')
 
   };
 
   const handleSubmit = async (event) => {
-     setstr('Getting the sitemap Urls.......');
+    setstr('Saving Website.......');
     event.preventDefault();
     const url = inputValue
-    
+
 
     axios
-      .post("/api/addOrg", {
-        url
+      .post("/api/website", {
+        url: url 
       })
       .then((res) => {
-        setstr('')
-        const sitemapData = res.data.siteMapData;
-        
-        
-        setbodyContent(sitemapData)
+        setstr('Success')
 
-
+        // Make a GET request to your API endpoint
+    
       })
       .catch((err) => {
-        setstr('Error occured! check console.')
-        setstr('')
+        setstr('Error occured! ' + err.response.data.error)
         console.log(err);
-
-
       });
-    }
-
-    return (
-      <form onSubmit={handleSubmit}>
-        <div className="flex w-full max-w-sm items-center space-x-2">
-
-          <div className="flex gap-1 flex-col">
-
-            <label htmlFor="">Enter organization appdomain</label>
-            <div className="flex gap-2">
-              <Input id="input" type="text" value={inputValue} onChange={handleInputChange} placeholder="https://www.example.com" />
-              <Button type="submit" >Add</Button>
-            </div>
-          </div>
-
-        </div>
-        <div className="flex gap-1">
-          {str}
-          <ul className="flex gap-4 flex-col ">
-        {bodyContent.map((item, index) => (
-          <li key={index}>{index +1}.<Link href={item}>{item}</Link></li>
-        ))}
-      </ul>
-        </div>
-      </form>
-    )
   }
+  
+    
+  
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <div className="flex w-full max-w-sm items-center space-x-2">
+
+        <div className="flex gap-1 flex-col">
+
+          <label htmlFor="">Enter Website Domain</label>
+          <div className="flex gap-2">
+            <Input id="input" type="text" value={inputValue} onChange={handleInputChange} placeholder="https://www.example.com" />
+            <Button type="submit" >Add</Button>
+          </div>
+        </div>
+
+      </div>
+      <div className="flex gap-1">
+        {str}
+        <ul className="flex gap-4 flex-col ">
+          {bodyContent.map((item, index) => (
+            <li key={index}>{index + 1}.<Link href={item}>{item}</Link></li>
+          ))}
+        </ul>
+      </div>
+    </form>
+  )
+}

@@ -31,13 +31,23 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
         console.log(password)
         setIsLoading(true);
 
-        axios.post("/api/signin", {
+        axios.post("/api/signup", {
             email, password
         }).then(res => {
-
+            setIsLoading(false);
+            toast.success('success sign up ', {
+                position: 'top-right', // Position of the toast container
+                autoClose: 3000,       // Duration to auto-close the toast (in milliseconds)
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            });
         })
 
             .catch(err => {
+                setIsLoading(false);
                 console.log(err)
                 if (err.response.status === 409) {
                     toast.error('user is already present! ', {
@@ -52,16 +62,15 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
 
 
                 }
-                else {
-                    router.push('/signup');
-                }
+                
+             
             })
 
 
 
-        setTimeout(() => {
-            setIsLoading(false);
-        }, 3000);
+        // setTimeout(() => {
+        //     setIsLoading(false);
+        // }, 3000);
 
     }
 

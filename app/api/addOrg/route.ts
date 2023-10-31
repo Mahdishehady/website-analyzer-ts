@@ -30,9 +30,10 @@ export async function POST(req: Request) {
             { msg: "", success: true, siteMapData },
             { status: 200 }
         );
+        return response
 
 
-        
+
 
 
 

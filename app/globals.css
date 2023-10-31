@@ -78,3 +78,49 @@
 .pink {
   background-color: pink;
 }
+
+
+
+
+
+
+/* KababMenu.css */
+
+.kabab-menu {
+  position: relative;
+  display: inline-block;
+}
+
+.kabab-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  margin: 0;
+  font-size: 1rem;
+  color: #333; /* Adjust the color as needed */
+}
+
+.menu-options {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background-color: #fff; /* Adjust the background color */
+  border: 1px solid #ccc;
+  border-radius: 4px; /* Rounded edges */
+  list-style: none;
+  padding: 0.5rem;
+  margin: 0;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  z-index: 100;
+}
+
+.menu-options li {
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+  transition: background-color 0.3s;
+}
+
+.menu-options li:hover {
+  background-color: #f2f2f2; /* Adjust the hover background color */
+}

@@ -3,13 +3,14 @@ import { NextResponse } from "next/server";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import connectDB from "@/db/config";
+import mongoose from "mongoose";
 
 
 export async function POST(req : Request) {
   const body = await req.json();
   const { email, password } = body;
   try {
-    connectDB();
+    connectDB('website-analyser');
     const isUserPresent = await User.findOne({ email });
     if (!isUserPresent) {
       return NextResponse.json({ msg: "User is not available" }, { status: 409 });
@@ -28,10 +29,10 @@ export async function POST(req : Request) {
       { msg: "User successfully logged in", success: true, token }, // Include the token here
       { status: 200 }
     );
-
+    mongoose.disconnect()
     // Set the token as a cookie
     response.cookies.set("token", token, {
-      httpOnly: true,
+      httpOnly: false,
     });
 
     return response;

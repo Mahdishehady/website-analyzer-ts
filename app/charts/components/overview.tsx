@@ -24,7 +24,7 @@ interface DataItem {
 export function Overview({ dateFromTo: { from, to } }: { dateFromTo: { from: Date ; to: Date} }) {
 
   const { data, isLoading, isError } = useQuery(['datachart', String(from), String(to)], () => fetchData({ from, to }));
-
+ 
   const formattedData: DataItem[] = [];
   for (let key in data ) {
     //if (jsonData.hasOwnProperty(key)) {
@@ -36,11 +36,12 @@ export function Overview({ dateFromTo: { from, to } }: { dateFromTo: { from: Dat
   
   //}
   if (isLoading) {
-    return <p>Loading...</p>;
+    return <p className="flex justify-center items-center m-0 h-[50vh]">Loading...</p>;
   }
 
   if (isError) {
-    return <p>Error fetching data</p>;
+    return 
+    <p className="">Error fetching data</p>;
   }
 
 

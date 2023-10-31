@@ -48,7 +48,7 @@ export default function DashboardPage() {
   
 function goTo()
 {
-  router.push('/organisation')
+  router.push('/website')
 }
    function logout(){
     localStorage.removeItem("token");
@@ -60,7 +60,7 @@ function goTo()
 
 
   const [valueinput, setvalue] = useState("")
-  const [date, setDate] = React.useState<DateRange | { from: Date; to: Date }>({
+  const [date, setDate] = React.useState<DateRange | { from: Date; to: Date } |any>({
 
     from: new Date(2023, 7, 1),
     to: addDays(new Date(2023, 7, 1), 20),
@@ -76,7 +76,7 @@ function goTo()
           <div className="flex items-center justify-between space-y-2">
             <h2 className="text-3xl font-bold tracking-tight">Web Analyzer</h2>
             <div className="flex items-center space-x-2">
-            <Button onClick={goTo}>organization</Button>
+            <Button onClick={goTo}>Websites</Button>
             <Button onClick={logout}>Logout</Button>
             </div>
             
@@ -123,7 +123,7 @@ function goTo()
 
                   </CardHeader>
                   <Top1 />
-                  {/* <TotalArticles /> */}
+                  
 
                 </Card>
 
@@ -158,7 +158,7 @@ function goTo()
                 </Card>
                 <Card>
                   <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                    <CardTitle className="text-sm font-medium">Sales</CardTitle>
+                    <CardTitle className="text-sm font-medium">Subscribers</CardTitle>
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       viewBox="0 0 24 24"
@@ -227,7 +227,7 @@ function goTo()
                     <Example />
                   </CardHeader>
                   <CardContent>
-                    {/* <RecentSales /> */}
+                   
                   </CardContent>
                 </Card>
               </div>

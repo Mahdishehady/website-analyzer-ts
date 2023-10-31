@@ -40,7 +40,7 @@ export default function RootLayout({
 
     }}
 
-    checkAuth();
+    // checkAuth();
 
     const intervalId = setInterval(checkAuth, 20 * 1000);
 
